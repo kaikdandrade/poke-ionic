@@ -17,7 +17,7 @@ export class HttpPokeService {
   }
 
   moreListing(): Observable<any> {
-    return this.http.get(`${this.env.apiURL}`)
+    return this.http.get(`${this.next}`)
   }
 
   listingSearch(search: any): Observable<any> {
@@ -34,9 +34,5 @@ export class HttpPokeService {
 
   getType(url: any): Observable<any> {
     return this.http.get(url)
-  }
-
-  getEvolution(index: any): Observable<any> {
-    return this.http.get(`${this.env.apiURL}evolution-chain/${index}`)
   }
 }

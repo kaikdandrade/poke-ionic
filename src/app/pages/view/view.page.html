@@ -32,13 +32,6 @@
         </ion-item>
       </ion-list>
 
-      <p style="font-size: 1.25rem; margin: 8px 0;">Status do pokémon</p>
-      <ion-list lines="full" style="padding: 0">
-        <ion-item color="primary" *ngFor="let status of poke.stats">
-          <ion-label>{{ status.stat.name }}: {{ status.base_stat }}</ion-label>
-        </ion-item>
-      </ion-list>
-
       <p style="font-size: 1.25rem; margin: 8px 0;">Habilidades do pokémon</p>
       <ion-list lines="full" style="padding: 0">
         <ion-item color="primary" *ngFor="let habilidades of poke.abilities">
@@ -46,11 +39,16 @@
         </ion-item>
       </ion-list>
 
-    </ion-card-content>
+      <p style="font-size: 1.25rem; margin: 8px 0;">Status do pokémon</p>
+      <ion-list lines="full" style="padding: 0">
+        <ion-item color="primary" *ngFor="let status of poke.stats">
+          <ion-label>{{ status.stat.name }}: {{ status.base_stat }}</ion-label>
+        </ion-item>
+      </ion-list>
 
-    <div class="ion-padding">
+      <br />
       <ion-button color="success" routerLink="/view/{{ poke.id+1 }}">Próximo</ion-button>
       <ion-button color="success" routerLink="/home">Ínicio</ion-button>
-    </div>
+    </ion-card-content>
   </ion-card>
 </ion-content>

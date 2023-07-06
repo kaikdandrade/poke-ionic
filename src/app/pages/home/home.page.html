@@ -6,7 +6,7 @@
     <ion-title>Ínicio</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="search" (keyup)="searchPoke()" (search)="listingPoke()"
+    <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="search" (change)="searchPoke()" (search)="listingPoke()"
       required></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,7 @@
       <ion-title size="large">Ínicio</ion-title>
     </ion-toolbar>
     <ion-toolbar>
-      <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="search" (keyup)="searchPoke()" (search)="listingPoke()"
+      <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="search" (change)="searchPoke()" (search)="listingPoke()"
         required></ion-searchbar>
     </ion-toolbar>
   </ion-header>
