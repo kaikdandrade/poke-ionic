@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'view/:index',
+    path: 'view',
     title: `${env.appName} - Visualização`,
     loadChildren: () => import('./pages/view/view.module').then( m => m.ViewPageModule)
   },
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'privacy-policies',
     title: `${env.appName} - Políticas de Privacidade`,
-    loadChildren: () => import('./pages/privacy-policies/privacy-policies.module').then(m => m.PrivacyPoliciesPageModule)
+    loadChildren: () => import('./pages/policies/policies.module').then(m => m.PoliciesPageModule)
   },
   {
     path: '404',

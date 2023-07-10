@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpPokeService } from 'src/app/service/httpPoke.service';
+import { Router } from '@angular/router';
+import { HttpPokeService } from './../../../app/service/httpPoke.service';
 
 @Component({
   selector: 'app-view',
@@ -11,26 +11,21 @@ export class ViewPage implements OnInit {
   index: any;
   pokemonArray: Array<any> = new Array();
 
-  constructor(
-    private service: HttpPokeService, 
-    private activeRoute: ActivatedRoute, 
-    private router: Router
-    ) { }
+  constructor(private service: HttpPokeService, private router: Router) { }
 
   ngOnInit(): void {
-    this.activeRoute.paramMap.subscribe(params => {
-      this.index = params.get('index')
-    });
+    this.index = history.state.index;
 
-    if(this.index == null) {
-      this.router.navigate(['/home']);
+    if (this.index === null || this.index === undefined) {
+      this.router.navigate(['home']);
     }
 
-    this.listing();
+    this.listing(this.index);
   }
 
-  listing() {
-    this.service.listingPokemon(this.index).subscribe(pokemon => {
+  listing(index: number) {
+    this.service.listingPokemon(index).subscribe(pokemon => {
+      this.pokemonArray = this.pokemonArray.slice(0, -1);
       this.pokemonArray.push(pokemon);
     })
   }

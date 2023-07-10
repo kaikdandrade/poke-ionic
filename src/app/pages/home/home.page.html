@@ -6,8 +6,16 @@
     <ion-title>Ínicio</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="search" (change)="searchPoke()" (search)="listingPoke()"
-      required></ion-searchbar>
+    <ion-grid>
+      <ion-row class="flex-container">
+        <ion-col size="9">
+          <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="search" (search)="listingPoke()" required></ion-searchbar>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="searchPoke()">Pesquisar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
@@ -28,7 +36,7 @@
   </div>
 
   <ion-list *ngFor="let poke of pokemonArray" [ngClass]="{'disabled-me': !searchFound }">
-    <ion-item routerLink="/view/{{ poke.id }}">
+    <ion-item (click)="handleClick(poke.id)">
       <ion-avatar slot="start"><img src="{{ poke.sprites.front_default }}" alt="Imagem do Pokémon {{ poke.name }}"
           style="width: 50px; height: 50px; object-fit: cover;" /></ion-avatar>
       <ion-label>{{ poke.name }}</ion-label>

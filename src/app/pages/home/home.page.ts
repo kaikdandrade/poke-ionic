@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpPokeService } from './../../service/httpPoke.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,14 @@ export class HomePage implements OnInit {
   searchFound: boolean = true;
   pokemonArray: Array<any> = new Array();
 
-  constructor(private service: HttpPokeService) { }
+  constructor(private service: HttpPokeService, private router: Router) { }
 
   ngOnInit(): void {
     this.listingPoke()
+  }
+
+  handleClick(index: number) {
+    this.router.navigate(['view'], { state: { index } });
   }
 
   searchPoke() {
