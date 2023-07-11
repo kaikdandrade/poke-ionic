@@ -12,9 +12,9 @@ export class AppComponent {
   
   public appPages = [
     { title: 'Ínicio', url: '/home', icon: 'home' },
-    { title: 'Políticas de Privacidade', url: '/privacy-policies', icon: 'alert' },
-    { title: 'Contato', url: '/contact', icon: 'id-card' },
-    { title: 'Sobre', url: '/about', icon: 'reader' },
+    { title: 'Contato', url: '/contact', icon: 'chatbox-ellipses' },
+    { title: 'Sobre', url: '/about', icon: 'document-attach' },
+    { title: 'Políticas de Privacidade', url: '/policies', icon: 'document-lock' }
   ];
 
   public labels = ['Família', 'Amigos', 'Trabalho', 'Pokémons', 'Pokebola'];

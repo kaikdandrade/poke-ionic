@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  search: string = "";
-  searchFound: boolean = true;
-  pokemonArray: Array<any> = new Array();
+  public searchValue = "";   // GUarda o valor digitdo no input search
+  public searching = false; // Se isso for verdadeiro muda a tela para a condiguração de pesquisa
+  public notFound = false;  // Se for verdadeiro exibe a imagem de pokémon não encontrado
+  public loading = false;   // Se isso for verdadeiro exibe a tela de carregamento
+  public pokemonArray: Array<any> = new Array();
 
   constructor(private service: HttpPokeService, private router: Router) { }
 
@@ -22,42 +24,92 @@ export class HomePage implements OnInit {
     this.router.navigate(['view'], { state: { index } });
   }
 
-  searchPoke() {
-    this.service.listingSearch(this.search).subscribe(pokemon => {
-      if (this.search === "") {
-        this.listingPoke();
-        return;
-      }
+  searchClean() {
+    this.searchValue = "";
+    this.notFound = false;
+    this.searching = false;
+    this.listingPoke()
+  }
 
-      this.searchFound = true;
+  async searchPoke() {
+    if (this.searchValue === "") {
+      this.searchClean();
+      return;
+    };
+
+    this.loading = true;
+    try {
+      const pokemon = await new Promise((resolve, reject) => {
+        this.service.listingSearch(this.searchValue).subscribe(
+          (pokemon) => {
+            resolve(pokemon)
+          },
+          (error) => {
+            reject(error)
+          }
+        )
+      });
+
+      this.notFound = false;
+      this.searching = true;
       this.pokemonArray = [];
       this.pokemonArray.push(pokemon)
-    }, () => { this.searchFound = false })
+    } catch (error) {
+      this.notFound = true
+    };
+
+    this.loading = false
   }
 
-  listingPoke() {
-    this.service.listing().subscribe(pokemon => {
-      this.searchFound = true;
-      this.service.next = pokemon.next;
-      this.pokemonArray = [];
-      for (let i = 0; i < pokemon.results.length; i++) {
-        this.getDetails(pokemon.results[i].url)
-      }
-    })
+  async listingPoke() {
+    this.loading = true;
+    await new Promise((resolve, reject) => {
+      this.service.listing().subscribe(
+        (pokemon) => {
+          this.service.next = pokemon.next;
+          this.pokemonArray = [];
+          for (let i = 0; i < pokemon.results.length; i++) {
+            this.getDetails(pokemon.results[i].url)
+          }
+          resolve(null)
+        },
+        (error) => {
+          reject(error)
+        }
+      )
+    });
+
+    this.loading = false
   }
 
-  moreListingPoke() {
-    this.service.moreListing().subscribe(pokemon => {
-      this.service.next = pokemon.next;
-      for (let i = 0; i < pokemon.results.length; i++) {
-        this.getDetails(pokemon.results[i].url)
-      }
-    })
+  async moreListingPoke() {
+    this.loading = true;
+    await new Promise((resolve, reject) => {
+      this.service.moreListing().subscribe(
+        (pokemon) => {
+          this.service.next = pokemon.next;
+          for (let i = 0; i < pokemon.results.length; i++) {
+            this.getDetails(pokemon.results[i].url)
+          }
+          resolve(null)
+        },
+        (error) => {
+          reject(error)
+        }
+      )
+    });
+
+    this.loading = false
   }
 
-  getDetails(url: any) {
-    this.service.getPokemon(url).subscribe(pokemon => {
-      this.pokemonArray.push(pokemon)
+
+  async getDetails(url: any) {
+    await new Promise(() => {
+      this.service.getPokemon(url).subscribe(
+        (pokemon) => {
+          this.pokemonArray.push(pokemon)
+        }
+      )
     })
   }
 }

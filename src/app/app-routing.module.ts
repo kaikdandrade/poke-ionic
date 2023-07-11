@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
   },
   {
-    path: 'privacy-policies',
+    path: 'policies',
     title: `${env.appName} - Políticas de Privacidade`,
     loadChildren: () => import('./pages/policies/policies.module').then(m => m.PoliciesPageModule)
   },
