@@ -35,6 +35,16 @@ a {
     text-decoration: none;
 }
 
-ion-card ion-card-content {
-    color: #ebebeb;
-}
+@media (prefers-color-scheme: dark) {
+    ion-card ion-card-content,
+    ion-card ion-card-header ion-card-title {
+        color: #ebebeb;
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    ion-card ion-card-content,
+    ion-card ion-card-header ion-card-title {
+        color: #262626;
+    }
+  }

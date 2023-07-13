@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
   }
 
   handleClick(index: number) {
-    this.router.navigate(['view'], { state: { index } });
+    this.router.navigate(['view'], { state: { index } })
   }
 
   searchClean() {
@@ -34,8 +34,8 @@ export class HomePage implements OnInit {
   async searchPoke() {
     if (this.searchValue === "") {
       this.searchClean();
-      return;
-    };
+      return
+    }
 
     this.loading = true;
     this.searchValue = this.searchValue.toLowerCase();
@@ -55,15 +55,15 @@ export class HomePage implements OnInit {
       this.searching = true;
       this.pokemonArray = [];
       this.pokemonArray.push(pokemon)
+
     } catch (error) {
       this.notFound = true
-    };
+    }
 
     this.loading = false
   }
 
   async listingPoke() {
-    this.loading = true;
     await new Promise((resolve, reject) => {
       this.service.listing().subscribe(
         (pokemon) => {
@@ -78,9 +78,7 @@ export class HomePage implements OnInit {
           reject(error)
         }
       )
-    });
-
-    this.loading = false
+    })
   }
 
   async moreListingPoke() {

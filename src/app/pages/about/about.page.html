@@ -9,8 +9,11 @@
 
 <ion-content>
   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Aplicativo Pokédex - Poke-Ionic</ion-card-title>
+    </ion-card-header>
+
     <ion-card-content>
-      <h2>Aplicativo Pokédex</h2>
       <p>Este aplicativo foi desenvolvido para exibir informações sobre os Pokémons.</p>
       <p>Ele consome uma <a href="https://pokeapi.co" target="_blank">API REST ful</a> pública para obter dados atualizados sobre os Pokémon.</p>
     </ion-card-content>
@@ -18,13 +21,14 @@
 
   <ion-card>
     <ion-card-header>
-      <h3>Informações de Contato</h3>
+      <ion-card-title>Informações de Contato</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-      <ul>
+      <ul style="font-size: 1rem;">
         <li><strong>Desenvolvedor:</strong> Kaik D' Andrade</li>
         <li><strong>Email:</strong> Kaikdossantossilva2@gmail.com</li>
-        <li><strong>Github:</strong> <a href="https://github.com/kaikdandrade" target="_blank">Click Aqui</a></li>
+        <li><a href="https://github.com/kaikdandrade" target="_blank"><ion-icon name="logo-github"></ion-icon>  Github</a></li>
       </ul>
 
       <ion-button routerLink="/contact">Ir para contato</ion-button>
