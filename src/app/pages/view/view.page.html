@@ -7,13 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Visualizar</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <ion-card color="primary" *ngFor="let poke of pokemonArray">
     <img alt="Imagem do Pokémon {{ poke.name }}" src="{{ poke.sprites.front_default }}" />
     <ion-card-header>

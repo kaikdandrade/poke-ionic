@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpPokeService } from './../../service/httpPoke.service';
+import { HttpPokeService } from 'src/app/service/httpPoke.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -38,6 +38,7 @@ export class HomePage implements OnInit {
     };
 
     this.loading = true;
+    this.searchValue = this.searchValue.toLowerCase();
     try {
       const pokemon = await new Promise((resolve, reject) => {
         this.service.listingSearch(this.searchValue).subscribe(

@@ -19,25 +19,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Ínicio</ion-title>
-    </ion-toolbar>
-    <ion-toolbar>
-      <ion-grid>
-        <ion-row class="flex-container">
-          <ion-col size="7">
-            <ion-searchbar placeholder="Pesquisar..." [(ngModel)]="searchValue" required></ion-searchbar>
-          </ion-col>
-          <ion-col size="1">
-            <ion-button (click)="searchPoke()">Pesquisar</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <div class="ion-padding" *ngIf="notFound">
     <p style="font-size: 1.5rem;">Pokémon não encontrado...</p>
     <img src="assets/charmander_bad.png" alt="Pokémon charmandar triste sentado em uma pedra olhando pro além" />
@@ -49,7 +31,7 @@
     <ion-item (click)="handleClick(poke.id)" style="cursor: pointer;">
       <ion-avatar slot="start"><img src="{{ poke.sprites.front_default }}" alt="Imagem do Pokémon {{ poke.name }}"
           style="width: 50px; height: 50px; object-fit: cover;" /></ion-avatar>
-      <ion-label>{{ poke.name }}</ion-label>
+      <ion-label style="text-transform: capitalize;">{{ poke.name }}</ion-label>
     </ion-item>
   </ion-list>
 
